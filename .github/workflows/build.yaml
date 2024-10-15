@@ -34,10 +34,10 @@ jobs:
             --label "org.opencontainers.image.source=https://auyer/arch-yay-container" \
             --label "org.opencontainers.image.description=Weekly build of the Arch container with `yay` AUR Helper pre installed" \
             --label "org.opencontainers.image.licenses=MIT" \
-            -t ghcr.io/auyer/arch-yay-container:latest \
-            -t ghcr.io/auyer/arch-yay-container:$(date +'%Y%-m%d') .
-          podman push ghcr.io/auyer/arch-yay-container:latest \
-                      ghcr.io/auyer/arch-yay-container:$(date +'%Y%-m%d')
+            -t ghcr.io/auyer/arch-yay-container:latest .
+          podman tag ghcr.io/auyer/arch-yay-container:latest ghcr.io/auyer/arch-yay-container:$(date +'%Y%-m%d')
+          podman push ghcr.io/auyer/arch-yay-container:$(date +'%Y%-m%d')
+          podman push ghcr.io/auyer/arch-yay-container:latest
           echo "$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" > image.txt
 
 
